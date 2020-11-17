@@ -17,18 +17,19 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('Churn_Modelling.csv')
+dataset = pd.read_csv('Datasets/Churn_Modelling.csv')
 X = dataset.iloc[:, 3:13].values
 y = dataset.iloc[:, 13].values
 
 # Encoding categorical data
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
 labelencoder_X_1 = LabelEncoder()
 X[:, 1] = labelencoder_X_1.fit_transform(X[:, 1])
 labelencoder_X_2 = LabelEncoder()
 X[:, 2] = labelencoder_X_2.fit_transform(X[:, 2])
-onehotencoder = OneHotEncoder(categorical_features=[1])
-X = onehotencoder.fit_transform(X).toarray()
+onehotencoder = ColumnTransformer([("Geography",OneHotEncoder(),[1])], remainder='passthrough')
+X = onehotencoder.fit_transform(X)
 X = X[:, 1:]
 
 # Splitting the dataset into the Training set and Test set
@@ -77,3 +78,16 @@ from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
 print(cm)
+
+"""
+Geography: France
+ Credit Score: 600
+ Gender: Male
+ Age: 40
+ Tenure: 3
+ Balance: 60000
+ Number of Products: 2
+ Has Credit Card: Yes
+ Is Active Member: Yes
+ Estimated Salary: 50000
+"""
