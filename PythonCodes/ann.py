@@ -79,15 +79,14 @@ cm = confusion_matrix(y_test, y_pred)
 
 print(cm)
 
-"""
-Geography: France
- Credit Score: 600
- Gender: Male
- Age: 40
- Tenure: 3
- Balance: 60000
- Number of Products: 2
- Has Credit Card: Yes
- Is Active Member: Yes
- Estimated Salary: 50000
-"""
+# TP 2 - Part 2 - Problem 3 - Prediction
+X_input = [600, 'France', 'Male', 40, 3, 60000, 2, 1, 1, 50000, 0]
+X_to_predict = np.array([X_input])
+X_to_predict[:, 1] = labelencoder_X_1.transform(X_to_predict[:, 1])
+X_to_predict[:, 2] = labelencoder_X_2.transform(X_to_predict[:, 2])
+X_to_predict = np.array(X_to_predict, dtype=int)
+X_to_predict = onehotencoder.transform(X_to_predict)
+X_to_predict = X_to_predict[:, 1:]
+X_to_predict = sc.transform(X_to_predict)
+y_predicted = classifier.predict(X_to_predict)
+print('Prediction for {} => {}'.format(X_input, 0 if y_predicted <= 0.5 else 1))
