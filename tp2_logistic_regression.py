@@ -1,6 +1,6 @@
 import os
 
-from draw_classes import draw_classes
+from draw_classes import draw_classes, draw_classes_regions
 import pandas
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
@@ -42,7 +42,10 @@ draw_classes(diabetes_X_train, diabetes_y_train, diabetes_features, 'PIMA traini
 # Work on Iris Plants
 plants_filepath = basedir + '/Datasets/iris_proc.data'
 plants_columns = ['Sepal length', 'Sepal width', 'Petal length', 'Petal width', 'Class']
-plants_features = ['Sepal length', 'Sepal width', 'Petal length', 'Petal width']
+# plants_features = ['Sepal width', 'Petal width']
+plants_features = ['Sepal length', 'Petal length']
 plants_to_predict = 'Class'
 print('Logistic regression on iris plants')
 plants_data, plants_model, plants_X_train, plants_X_test, plants_y_train, plants_y_test, plants_y_predicted, plants_confusion_matrix = apply_logistic_regression(plants_filepath, plants_columns, plants_features, plants_to_predict, print_confusion_matrix=True)
+
+draw_classes_regions(plants_X_test, plants_y_predicted, plants_model, plants_features)
