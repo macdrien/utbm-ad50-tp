@@ -7,7 +7,7 @@
 import numpy as np
 import pandas as pd
 
-from rnn_functions import build_series,load_regressor,load_dataset,build_regressor,get_subset,apply_inverse_transform,plot_stock_prices
+from PythonCodes.rnn_functions import build_series,load_regressor,load_dataset,build_regressor,get_subset,apply_inverse_transform,plot_stock_prices
 
 
 stock_file='../Datasets/RNN/Google_Stock_Price'
