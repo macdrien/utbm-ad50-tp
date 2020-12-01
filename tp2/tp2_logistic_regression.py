@@ -1,6 +1,6 @@
 import os
 
-from draw_classes import draw_classes, draw_classes_regions
+from util.draw_classes import draw_classes, draw_classes_regions
 import pandas
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix

@@ -16,7 +16,7 @@ from keras.layers import Dense
 
 # Import data
 columns = ['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin thickness', 'Insulin', 'Body Mass Index', 'Diabetes Pedigree Function', 'Age', 'Outcome']
-data = pandas.read_csv('Datasets/pima-indians-diabetes.data', names=columns)
+data = pandas.read_csv('../Datasets/pima-indians-diabetes.data', names=columns)
 
 # Select features and column to predict
 features = columns[:-1]
